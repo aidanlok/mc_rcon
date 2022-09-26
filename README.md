@@ -9,7 +9,7 @@ Provides an API to connect to, log in to, send commands to, and receive data fro
 Run `flutter pub add mc_rcon_dart` or add the following to your pubspec.yaml:
 ```
 dependencies:
-  mc_rcon_dart: <current_version>^
+  mc_rcon_dart: ^<current_version>
 ```
 
 ## Usage
