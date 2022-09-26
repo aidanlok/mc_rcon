@@ -13,3 +13,6 @@
 
 ## 1.0.2
 * Actually renamed the example file...
+
+## 1.0.3
+* Something funky happened with the upload of the last version. Trying again...
