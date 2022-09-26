@@ -1,4 +1,5 @@
 A Dart SDK for interacting with a Minecraft server using the RCON protocol.
+[Package on pub.dev](https://pub.dev/packages/mc_rcon_dart)
 
 ## Features
 
