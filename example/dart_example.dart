@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:mc_rcon/mc_rcon.dart';
+import 'package:mc_rcon_dart/mc_rcon_dart.dart';
 
 main() async {
   await createSocket("172.30.80.31", port: 25575); // Replace RCON server info.

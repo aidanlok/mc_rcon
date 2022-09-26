@@ -6,10 +6,10 @@ Provides an API to connect to, log in to, send commands to, and receive data fro
 
 ## Getting started
 
-Run `flutter pub add mc_rcon` or add the following to your pubspec.yaml:
+Run `flutter pub add mc_rcon_dart` or add the following to your pubspec.yaml:
 ```
 dependencies:
-  mc_rcon: <current_version>^
+  mc_rcon_dart: <current_version>^
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ See the example below. Full code example also in [example.dart](example/dart_exa
 
 ```dart
 import 'package:flutter/foundation.dart';
-import 'package:mc_rcon/mc_rcon.dart';
+import 'package:mc_rcon_dart/mc_rcon_dart.dart';
 
 main() async {
   await createSocket("172.30.80.31", port: 25575);
