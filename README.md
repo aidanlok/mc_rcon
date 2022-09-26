@@ -1,16 +1,3 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
 A Dart SDK for interacting with a Minecraft server using the RCON protocol.
 
 ## Features
@@ -47,7 +34,7 @@ void onData(Uint8List data) {
 
 ## Additional information
 
-The RCON documentation is [here](https://wiki.vg/RCON).
-The documentation for Minecraft console commands is [here](https://minecraft.fandom.com/wiki/Commands).
-The documentation for Socket (as of 2.18.1), which is used to communicate with the RCON server, is [here](https://api.dart.dev/stable/2.18.1/dart-io/Socket-class.html).
-Report bugs by making a new issue or send a merge request with the fix, but I'm pretty sure this is all working as is, and I don't expect the RCON protocol to change.
+* The RCON documentation is [here](https://wiki.vg/RCON).
+* The documentation for Minecraft console commands is [here](https://minecraft.fandom.com/wiki/Commands).
+* The documentation for Socket (as of 2.18.1), which is used to communicate with the RCON server, is [here](https://api.dart.dev/stable/2.18.1/dart-io/Socket-class.html).
+* Report bugs by making a new issue or send a merge request with the fix, but I'm pretty sure this is all working as is, and I don't expect the RCON protocol to change.
