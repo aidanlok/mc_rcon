@@ -4,8 +4,6 @@ import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
 
-import 'package:flutter/foundation.dart';
-
 /// The socket that is used to communicate with the RCON server.
 /// Generated when createSocket() is run.
 Socket? rconSck;
@@ -49,36 +47,24 @@ bool listen(Function onData) {
         ..[3] = data[7];
       var blob = ByteData.sublistView(respReqIDInts);
       int respReqID = blob.getInt32(0, Endian.little);
-      if (kDebugMode) {
-        print("mc_rcon: Server response id: $respReqID");
-      }
+      print("mc_rcon: Server response id: $respReqID");
 
       if (respReqID == requestID) {
-        if (kDebugMode) {
-          print("mc_rcon: Good packet received.");
-        }
+        print("mc_rcon: Good packet received.");
         onData(data);
       } else if (respReqID == -1) {
-        if (kDebugMode) {
-          print(
-              "mc_rcon: Bad authentication. Incorrect password or you haven't logged in yet.");
-        }
+        print(
+            "mc_rcon: Bad authentication. Incorrect password or you haven't logged in yet.");
       } else {
-        if (kDebugMode) {
-          print("mc_rcon: Received unknown request ID.");
-        }
+        print("mc_rcon: Received unknown request ID.");
       }
     },
     onError: (error) {
-      if (kDebugMode) {
-        print('mc_rcon: Error with the connection to the server: $error');
-      }
+      print('mc_rcon: Error with the connection to the server: $error');
       rconSck!.destroy();
     },
     onDone: () {
-      if (kDebugMode) {
-        print('mc_rcon: The server has ended the connection.');
-      }
+      print('mc_rcon: The server has ended the connection.');
       rconSck!.destroy();
     },
     cancelOnError: false,
@@ -121,9 +107,7 @@ bool sendMsg(int msgID, String msg) {
   Uint8List payload = bBuilder.toBytes();
 
   rconSck!.add(payload);
-  if (kDebugMode) {
-    print("mc_rcon: sent payload ($payload) on socket");
-  }
+  print("mc_rcon: sent payload ($payload) on socket");
 
   return true;
 }

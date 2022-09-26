@@ -13,7 +13,7 @@ dependencies:
 ```
 
 ## Usage
-See the example below. Full code example also in [example.dart](example/dart_example.dart).
+See the example below. Full code example also in [example.dart](example/example.dart).
 
 ```dart
 import 'package:flutter/foundation.dart';
