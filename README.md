@@ -11,29 +11,43 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+A Dart SDK for interacting with a Minecraft server using the RCON protocol.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+Provides an API to connect to, log in to, send commands to, and receive data from a Minecraft server via the RCON protocol.
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Run `flutter pub add mc_rcon` or add the following to your pubspec.yaml:
+```
+dependencies:
+  mc_rcon: <current_version>^
+```
 
 ## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+See the example below. Full code example also in [example.dart](example/dart_example.dart).
 
 ```dart
-const like = 'sample';
+import 'package:flutter/foundation.dart';
+import 'package:mc_rcon/mc_rcon.dart';
+
+main() async {
+  await createSocket("172.30.80.31", port: 25575);
+  listen(onData);
+  login("123");
+  sendCommand("time set 0");
+  close();
+}
+
+void onData(Uint8List data) {
+  print(String.fromCharCodes(data, 12));
+}
 ```
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+The RCON documentation is [here](https://wiki.vg/RCON).
+The documentation for Minecraft console commands is [here](https://minecraft.fandom.com/wiki/Commands).
+The documentation for Socket (as of 2.18.1), which is used to communicate with the RCON server, is [here](https://api.dart.dev/stable/2.18.1/dart-io/Socket-class.html).
+Report bugs by making a new issue or send a merge request with the fix, but I'm pretty sure this is all working as is, and I don't expect the RCON protocol to change.
