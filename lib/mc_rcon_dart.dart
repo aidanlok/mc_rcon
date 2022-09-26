@@ -50,7 +50,7 @@ bool listen(Function onData) {
       var blob = ByteData.sublistView(respReqIDInts);
       int respReqID = blob.getInt32(0, Endian.little);
       if (kDebugMode) {
-        print("response id: $respReqID");
+        print("mc_rcon: Server response id: $respReqID");
       }
 
       if (respReqID == requestID) {
