@@ -8,5 +8,8 @@
 * Fixed some debug print lines. Tested package and full API is operational.
 
 ## 1.0.1
-* Fixed example Dart file name to match pub.dev requirement.
+* Fixed example Dart file name to match pub.dev requirement. (This was a lie.)
 * Removed Flutter dependency.
+
+## 1.0.2
+* Actually renamed the example file...
