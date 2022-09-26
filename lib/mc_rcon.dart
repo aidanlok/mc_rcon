@@ -6,24 +6,35 @@ import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
 
-/// The socket that is used to communicate with the rcon server.
+/// The socket that is used to communicate with the RCON server.
 /// Generated when createSocket() is run.
 Socket? rconSck;
 
 /// The randomly generated request ID that is sent with every message
-/// to the rcon server. Used to ensure that the commands sent to and
+/// to the RCON server. Used to ensure that the commands sent to and
 /// received from the server are ours, and not another user's.
 int requestID = Random().nextInt(2147483647);
 
-/// Creates and stores a socket connected to the rcon server
+/// Creates and stores a socket connected to the RCON server
 /// with the given host (IP/FQDN) and port.
 Future<void> createSocket(String host, {int port = 25575}) async {
   rconSck = await Socket.connect(host, port);
 }
 
-/// Starts listening on the socket for packets sent by the rcon server.
+/// Closes the socket to the RCON server. Returns a bool that specified
+/// whether the socket was successfully destroyed.
+bool close() {
+  if (rconSck == null) {
+    return false;
+  }
+  rconSck!.destroy();
+  return true;
+}
+
+/// Starts listening on the socket for packets sent by the RCON server.
 /// Returns a boolean that specifies if the socket has started listening.
-/// Note: onData must accept a Uint8List as the only parameter.
+/// Note: onData must accept a Uint8List as the only parameter. The payload
+/// of the message starts at element 12.
 bool listen(Function onData) {
   if (rconSck == null) {
     return false;
@@ -31,7 +42,32 @@ bool listen(Function onData) {
 
   rconSck!.listen(
     (Uint8List data) {
-      onData(data);
+      Uint8List respReqIDInts = Uint8List(4)
+        ..[0] = data[4]
+        ..[1] = data[5]
+        ..[2] = data[6]
+        ..[3] = data[7];
+      var blob = ByteData.sublistView(respReqIDInts);
+      int respReqID = blob.getInt32(0, Endian.little);
+      if (kDebugMode) {
+        print("response id: $respReqID");
+      }
+
+      if (respReqID == requestID) {
+        if (kDebugMode) {
+          print("mc_rcon: Good packet received.");
+        }
+        onData(data);
+      } else if (respReqID == -1) {
+        if (kDebugMode) {
+          print(
+              "mc_rcon: Bad authentication. Incorrect password or you haven't logged in yet.");
+        }
+      } else {
+        if (kDebugMode) {
+          print("mc_rcon: Received unknown request ID.");
+        }
+      }
     },
     onError: (error) {
       if (kDebugMode) {
@@ -92,13 +128,13 @@ bool sendMsg(int msgID, String msg) {
   return true;
 }
 
-/// Log in to the rcon server using the given socket and password.
+/// Log in to the RCON server using the given socket and password.
 /// Returns a boolean that specifies if the command was successful.
-bool login(String password, Function onSuccess, Function onFailure) {
+bool login(String password) {
   return sendMsg(3, password);
 }
 
-/// Send the provided command to the rcon server using the
+/// Send the provided command to the RCON server using the
 /// Returns a boolean that specifies if the command was successful.
 bool sendCommand(String message) {
   return sendMsg(2, message);
