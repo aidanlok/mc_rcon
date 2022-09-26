@@ -1,4 +1,4 @@
-name: mc_rcon
+name: mc_rcon_dart
 description: A Dart SDK for interacting with a Minecraft server using the RCON protocol.
 version: 0.0.1
 homepage: https://github.com/aidanlok/mc_rcon
