@@ -16,3 +16,13 @@
 
 ## 1.0.3
 * Something funky happened with the upload of the last version. Trying again...
+
+## 1.1.0
+* Refactored basically every function and split them into many more functions.
+* Added a whole lot of comments to go with that refactoring.
+* Also added DartDocs to the new functions (but those are all private... so you may never see them :P)
+* Modified the example.dart to reflect the new API.
+* Modified the README getting started section.
+* Modified the README usage section.
+* Added Flutter dependency (required for function annotations).
+* Added unit tests. THESE ARE NOT DONE. I AM NOT GOING TO WRITE MORE. AT LEAST NOT RIGHT NOW. I DO NOT HAVE THE WILLPOWER TO DO THIS ANY LONGER. Please send help.
