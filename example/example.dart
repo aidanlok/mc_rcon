@@ -9,6 +9,9 @@ main() async {
   close();
 }
 
-void onData(Uint8List data) {
-  print(String.fromCharCodes(data, 12));
+void onData(List<int> header, String payload) {
+  print("Message length: ${header[0]}");
+  print("Response ID: ${header[1]}");
+  print("Command ID: ${header[2]}");
+  print("Response payload: $payload");
 }
